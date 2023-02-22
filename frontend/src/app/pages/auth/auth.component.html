@@ -1,0 +1,18 @@
+<!-- fadeInDown -->
+<div class="container middle">
+  <p-card ngClass="auth-card">
+    <div class="p-card-content">
+      <h2 class="mb-0">Admin Panel</h2>
+      <div class="fadeIn first mt-2">
+        <i class="pi pi-user"></i>
+        <i class="pi pi-sign-in"></i>
+      </div>
+      <!-- Login Form -->
+      <form autocomplete="off" class="animate__animated animate__fadeIn">
+        <input type="text" [(ngModel)]='username' placeholder="username" name="username">
+        <input type="password" id="password" [(ngModel)]="password" placeholder="password" name='password'>
+        <button type="submit" (click)="logIn()">Log In</button>
+      </form>
+    </div>
+  </p-card>
+</div>

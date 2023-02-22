@@ -1,0 +1,53 @@
+<footer class="site-footer">
+    <div class="container">
+        <div class="row">
+            <ul class="footer-links">
+                <li><a routerLink="/about">Sobre Nosotros</a></li>
+                <li><a routerLink="/products">Productos</a></li>
+                <!-- <li></li> -->
+                <li class="footer-links__contact" (mouseenter)="isDivContact = true"
+                    (mouseleave)="isDivContact = false">
+                    Contactános
+
+                    <div *ngIf="isDivContact" class="animate__animated animate__fadeIn">
+                        <span>
+                            <a target="_blank" href="mailto:oscarblanco777@hotmail.com">Email <i
+                                    class="pi pi-send"></i></a>
+                        </span>
+                        <p>
+                            <a target="_blank" href="https://api.whatsapp.com/send?phone=573162215545">WhatsApp <i
+                                    class="pi pi-whatsapp"></i></a>
+                        </p>
+
+                    </div>
+
+                </li>
+
+            </ul>
+        </div>
+        <hr>
+    </div>
+    <div class="container-contact-info">
+        <ul class="contact-info">
+            <li>
+                <a href="tel:+573162215545"><i class="pi pi-phone"></i> +57 316 221 5545</a>
+            </li>
+            <li>
+                <address><i class="pi pi-building"></i>Calle 42 No. 19-33, Bucaramanga, Colombia</address>
+            </li>
+        </ul>
+
+        <p class="copyright-text">Copyright &copy; 2022 All Rights Reserved by
+            <a href="#">Disgrafic</a>.
+        </p>
+
+        <div class="col-md-3 col-sm-4 col-xs-8">
+            <ul class="social-icons">
+                <li><a class="facebook" href="https://www.facebook.com/Disgrafic-Publicidad-101981001864316"
+                        target="_blank"><i class="pi pi-facebook"></i></a></li>
+                <li><a class="instagram" href="https://www.instagram.com/lito_disgrafic/" target="_blank"><i
+                            class="pi pi-instagram"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</footer>

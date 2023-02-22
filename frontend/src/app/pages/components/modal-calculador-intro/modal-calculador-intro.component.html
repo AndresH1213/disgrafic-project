@@ -1,0 +1,17 @@
+<p-dialog header="Información sobre la Calculadora de Precios" [(visible)]="showModal" [breakpoints]="{'960px': '75vw'}"
+    [style]="{width: '50vw'}" [draggable]="false" [resizable]="false">
+    <p>En esta sección puedes calcular el valor de un trabajo de imprenta basados en su materia prima.
+        Nosotros también nos especializamos en realizar medios impresos y litográficos con calidad,
+        eficiencia y agilidad.
+    </p>
+    <p>
+        Si conoces las especificaciones de tu trabajo, asi como la clase de papel que se debe utilizar y la
+        maquinaria que se necesita puedes calcular un valor aproximado de tu trabajo. Recuerda que si tu trabajo
+        requiere mano de obra como encuadernación, plastificado, etc., puede aumentar su valor real. Por favor
+        comunicate con nosotros para mayor Información.
+        <a href="https://api.whatsapp.com/send?phone=573162215545"><i class="mr-2 pi pi-whatsapp"></i> WhatsApp</a>
+    </p>
+    <ng-template pTemplate="footer">
+        <p-button (click)="showModal=false" label="Entendido" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-dialog>

@@ -1,0 +1,196 @@
+<div class="admin-container" *ngIf="displayOptionsContainer">
+  <div class="admin-options" (click)="showProducts()">
+    <h2>Products</h2>
+    <img class="admin-option_img" src="assets/images/admin_products.svg" alt="products vector">
+  </div>
+  <div class="admin-options separate-line" (click)="showClients()">
+    <h2>Clients</h2>
+    <img class="admin-option_img" src="assets/images/admin_clients.svg" alt="clients vector">
+  </div>
+</div>
+
+<!-- product -->
+
+<div class="admin-container" *ngIf="displayProductsContainer">
+
+  <p-progressSpinner *ngIf="showSpinnerProduct" [style]="{width: '50px', height: '50px'}" styleClass="custom-spinner"
+    strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s">
+  </p-progressSpinner>
+
+  <p-table [value]="products" *ngIf="!showSpinnerProduct" responsiveLayout="scroll">
+    <ng-template pTemplate="caption">
+      <div class="jt-cont-between">
+        <p-button icon="pi pi-backward" (click)="showOptions()"></p-button>
+        <p-dropdown [options]="productOptions" name="product-options" optionLabel="name"
+          [style]="{'minWidth': '8rem', 'text-align': 'center'}" (onChange)="setProductOption($event)">
+        </p-dropdown>
+        <p-button (click)="openProductModal()">Agregar<span class="pi pi-plus icons"></span></p-button>
+        <p-button icon="pi pi-refresh" (click)="loadProducts()"></p-button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Nombre</th>
+        <th *ngIf="productOptionSelected === productOptions[0].value">Imagen</th>
+        <th>Tipo</th>
+        <th>Subtipo</th>
+        <th>Precio</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+      <tr>
+        <td>{{product.name}}</td>
+        <td *ngIf="productOptionSelected === productOptions[0].value">
+          <img *ngIf="product.image_url" [src]="product.image_url" [alt]="product.name" width="100" class="shadow-4" />
+          <img *ngIf="!product.image_url" src="/assets/images/default_product.jpg" alt="default_image" width="100"
+            class="shadow-4" />
+        </td>
+        <td>{{product.product_type}}</td>
+        <td>{{product.subtype}}</td>
+        <td>{{product.price}}</td>
+        <td>
+          <i class="pi pi-pencil icons" (click)="editProduct(product.product_id)"></i>
+          <i class="pi pi-trash icons" (click)="deleteProduct(product.product_id)"></i>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate=" summary">
+      <div class="jt-cont-between">
+        In total there are {{products ? products.length : 0 }} products.
+      </div>
+    </ng-template>
+  </p-table>
+</div>
+
+<!-- clients  -->
+
+<div class="admin-container" *ngIf="displayClientsContainer">
+
+  <p-progressSpinner *ngIf="showSpinnerClient" [style]="{width: '50px', height: '50px'}" styleClass="custom-spinner"
+    strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s">
+  </p-progressSpinner>
+
+  <p-table [value]="clients" *ngIf="!showSpinnerClient" responsiveLayout="scroll">
+    <ng-template pTemplate="caption">
+      <div class="jt-cont-between">
+        <p-button icon="pi pi-backward" (click)="showOptions()"></p-button>
+        <h4>
+          Clientes
+        </h4>
+        <p-button (click)="openClientModal()">Agregar<span class="pi pi-plus icons"></span></p-button>
+        <p-button icon="pi pi-refresh" (click)="loadClients()"></p-button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Nombre</th>
+        <th>Teléfono</th>
+        <th>Email</th>
+        <th>Dirección</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-client>
+      <tr>
+        <td>{{client.name}}</td>
+        <td>{{client.phone}}</td>
+        <td>{{client.email}}</td>
+        <td>{{client.address}}</td>
+        <td>
+          <i class="pi pi-pencil icons" (click)="editClient(client.client_id)"></i>
+          <i class="pi pi-trash icons" (click)="deleteClient(client.client_id)"></i>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="jt-cont-between">
+        En total hay {{clients ? clients.length : 0 }} clientes.
+      </div>
+    </ng-template>
+  </p-table>
+</div>
+
+
+<div *ngIf="displayModalProduct">
+  <p-dialog header="{{isEdit ? 'Actualizar Producto' : 'Crear Producto'}}" [(visible)]="displayModalProduct"
+    [modal]="true" [style]="{width: '40vw'}" [draggable]="false" [closable]="false" [resizable]="false">
+    <i class="pi pi-times close-icon" (click)="closeProductModal()"></i>
+    <div *ngIf="showError" class="error-message">
+      Debes llenar todos los campos
+    </div>
+    <form (ngSubmit)="createProduct()" #productForm="ngForm" autocomplete="off">
+      <div class="form-controls">
+        <label for="name">Nombre</label>
+        <input type="text" name="name" [(ngModel)]="productFormObj.name" required minlength="3" placeholder="Nombre">
+      </div>
+      <div class="form-controls">
+        <label for="label">Etiqueta</label>
+        <!-- <input type="text" name="label" [(ngModel)]="productFormObj.label" required minlength="4"
+          placeholder="Etiqueta"> -->
+        <p-dropdown [options]="labelOptions" placeholder="Seleccione..." name="label" [(ngModel)]="productFormObj.label"
+          optionLabel="label" optionValue="value" [style]="{'width': '11rem'}">
+        </p-dropdown>
+      </div>
+      <div class="form-controls">
+        <label for="price">Precio</label>
+        <input type="number" name="price" [(ngModel)]="productFormObj.price" required min="0" placeholder="Precio">
+      </div>
+      <div class="form-controls">
+        <label for="type">Tipo</label>
+        <input type="text" name="product_type" [(ngModel)]="productFormObj.product_type" required minlength="4"
+          placeholder="Tipo">
+      </div>
+      <div class="form-controls">
+        <label for="subtype">Subtipo</label>
+        <input type="text" name="subtype" [(ngModel)]="productFormObj.subtype" required minlength="3"
+          placeholder="Subtipo">
+      </div>
+      <div class="form-controls">
+        <label for="image">Imagen</label>
+        <input type="file" name="image" (change)="changeImage($event.target)" placeholder="Imagen">
+      </div>
+    </form>
+    <ng-template pTemplate="footer">
+      <button (click)="isEdit ? updateProduct() : createProduct()"
+        class="{{productForm.valid ? 'pbutton-valid' : 'pbutton-invalid' }}">
+        {{isEdit ? 'Actualizar' : 'Crear'}}
+      </button>
+    </ng-template>
+  </p-dialog>
+</div>
+
+<div *ngIf="displayModalClient">
+  <p-dialog header="{{isEdit ? 'Actualizar Cliente' : 'Crear Cliente'}}" [(visible)]="displayModalClient" [modal]="true"
+    [style]="{width: '40vw'}" [draggable]="false" [closable]="false" [resizable]="false">
+    <i class="pi pi-times close-icon" (click)="closeClientModal()"></i>
+    <div *ngIf="showError" class="error-message">
+      Debes llenar todos los campos
+    </div>
+    <form (ngSubmit)="createClient()" #clientForm="ngForm" autocomplete="off">
+      <div class="form-controls">
+        <label for="name">Nombre</label>
+        <input type="text" name="name" [(ngModel)]="clientFormObj.name" required minlength="4" placeholder="Nombre">
+      </div>
+      <div class="form-controls">
+        <label for="phone">Telefono</label>
+        <input type="text" name="phone" [(ngModel)]="clientFormObj.phone" required minlength="4" placeholder="Telefono">
+      </div>
+      <div class="form-controls">
+        <label for="email">Email</label>
+        <input type="text" name="email" [(ngModel)]="clientFormObj.email" required minlength="8" placeholder="Email">
+      </div>
+      <div class="form-controls">
+        <label for="address">Direccion</label>
+        <input type="text" name="address" [(ngModel)]="clientFormObj.address" required minlength="4"
+          placeholder="Direccion">
+      </div>
+    </form>
+    <ng-template pTemplate="footer">
+      <button (click)="isEdit ? updateClient() : createClient()"
+        class="{{clientForm.valid ? 'pbutton-valid' : 'pbutton-invalid' }}">
+        {{isEdit ? 'Actualizar' : 'Crear'}}
+      </button>
+    </ng-template>
+  </p-dialog>
+</div>

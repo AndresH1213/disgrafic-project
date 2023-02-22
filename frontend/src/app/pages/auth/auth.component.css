@@ -1,0 +1,109 @@
+.container {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+a {
+  color: #92badd;
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 400;
+}
+.auth-card {
+  margin-top: 5%;
+  width: 500px;
+  box-shadow: 0 5px 10px 0 rgba(95, 186, 233, 0.2);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+h2 {
+  text-align: center;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  display: inline-block;
+  margin: 10px 8px 10px 8px;
+  color: #cccccc;
+}
+/* STRUCTURE */
+.p-card-content {
+  display: flex;
+  margin: auto;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+  min-height: 100%;
+  padding: 10px;
+  padding-top: 0;
+}
+
+/* FORM TYPOGRAPHY*/
+
+button {
+  background-color: var(--main-color);
+  border: none;
+  color: white;
+  padding: 15px 60px;
+  width: fit-content;
+  align-self: center;
+  text-align: center;
+  margin: 10px 0;
+  text-transform: uppercase;
+  font-size: 13px;
+  -webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+  box-shadow: 0 5px 10px 0 rgba(95, 186, 233, 0.2);
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
+
+button:hover {
+  background-color: whitesmoke;
+  color: black;
+  cursor: pointer;
+}
+
+input {
+  border: none;
+  background-color: var(--main-color-light);
+  padding: 10px 0;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 5px;
+  width: 250px;
+  border: 2px solid #f6f6f6;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  border-bottom: 2px solid var(--main-color-dark);
+  color: var(--second-color-dark);
+}
+
+.underlineHover:hover {
+  color: var(--second-color-dark);
+}
+
+.underlineHover:hover:after {
+  width: 100%;
+}
+
+*:focus {
+  outline: none;
+}
+
+@media only screen and (max-width: 450px) {
+  .auth-card {
+    width: 300px;
+  }
+
+  input {
+    width: 180px;
+  }
+}

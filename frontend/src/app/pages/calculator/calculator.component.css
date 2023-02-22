@@ -1,0 +1,117 @@
+.container {
+  margin-bottom: 20rem;
+}
+
+form {
+  display: grid;
+  background-color: var(--black-color);
+  margin: 15px;
+  padding: 10px;
+  border-radius: 1em;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+h5 {
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  color: rgba(173, 168, 168, 0.6);
+  text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.1);
+}
+
+p {
+  padding: 0;
+  margin: 0;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+  width: 120px;
+  margin: 0px 5px;
+  text-align: center;
+}
+
+.container_inputs--materials {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-content: center;
+  gap: 0.5em;
+}
+
+.form-control {
+  width: 316px;
+  color: var(--secondary-color-ligth);
+  background-color: var(--black-color);
+}
+
+.form-group {
+  display: flex;
+}
+
+.sizes-label {
+  margin-left: 5px;
+  width: 120px;
+  font-size: medium;
+  text-align: center;
+  padding-top: 7px;
+  border: 1px solid var(--main-color);
+}
+
+.form-control__header {
+  font-size: medium;
+}
+
+.worklabor-switch {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px;
+  align-items: center;
+}
+
+@media only screen and (max-width: 780px) {
+  .container_inputs--materials {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media only screen and (max-width: 410px) {
+  form {
+    margin: 10px 0px;
+    padding: 0px;
+    border-radius: 1em;
+  }
+
+  .form-control__header {
+    font-size: small;
+  }
+
+  .form-control {
+    padding: 0;
+    width: 240px;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+    width: 60px;
+    margin: 0px 5px;
+    text-align: center;
+  }
+}
+
+.calculator_options {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}

@@ -1,0 +1,55 @@
+service: disgrafic-backend
+
+frameworkVersion: '3'
+
+custom:
+  appname: disgrafic
+  s3_arn: !GetAtt ImageProductsBucket.Arn
+  pythonRequirements:
+  dockerizePip: true
+
+plugins:
+  - serverless-python-requirements
+  - serverless-plugin-simulate
+
+provider:
+  name: aws
+  runtime: python3.8
+  stage: dev
+  region: us-east-2
+  httpApi:
+    cors: true
+    authorizers:
+      customAuth:
+        type: request
+        functionName: custom-auth
+  environment:
+    DYNAMODB_TABLE_PRODUCT: ${self:custom.appname}-product-${sls:stage}
+    DYNAMODB_TABLE_CLIENT: ${self:custom.appname}-client-${sls:stage}
+    BUCKET_UPLOAD_IMAGES: ${self:custom.appname}-product-bucket-${sls:stage}
+    REGION: ${aws:region}
+  iam:
+    role:
+      statements:
+        - ${file(./resources/iam_roles/dynamo_role.yml)}
+        - ${file(./resources/iam_roles/bucket_role.yml)}
+        - ${file(./resources/iam_roles/parameter_store.yml)}
+
+package:
+  patterns:
+    - '!node_modules/**'
+    - '!env/**'
+    - '!README.md'
+    - '!package.json'
+    - '!package-lock.json'
+    - '!requirements.txt'
+    - '!resources/**'
+
+functions:
+  - ${file(./resources/lambdas/client_api.yml)}
+  - ${file(./resources/lambdas/product_api.yml)}
+  - ${file(./resources/lambdas/general_api.yml)}
+  - ${file(./resources/lambdas/auth_api.yml)}
+
+resources:
+  - ${file(./resources/infra/infra.yml)}

@@ -1,0 +1,58 @@
+h5 {
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  color: rgba(173, 168, 168, 0.6);
+  text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.1);
+}
+
+.container_inputs--workforce {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  row-gap: 1em;
+}
+
+.form-control {
+  width: max-content;
+  color: var(--secondary-color-ligth);
+  display: flex;
+  align-items: center;
+  background-color: var(--black-color);
+}
+
+.p-inputgroup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.control-percentage {
+  background-color: var(--black-color);
+  border: 2px var(--secondary-color-ligth) solid;
+  border-radius: 0.5em;
+  grid-column: 2/3;
+}
+
+.workforce-field {
+  display: flex;
+  flex-direction: column;;
+}
+
+@media only screen and (max-width: 780px) {
+  .container_inputs--workforce {
+    grid-template-columns: 1fr 1fr;
+  }
+  .control-percentage {
+    grid-column: 1/2;
+  }
+}
+@media only screen and (max-width: 530px) {
+  .container_inputs--workforce {
+    grid-template-columns: 1fr;
+  }
+  .control-percentage {
+    grid-column: 1/2;
+  }
+}

@@ -1,0 +1,173 @@
+.home-content-container {
+  margin-top: 5rem;
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 2fr;
+  place-items: center;
+  max-width: 2000px;
+}
+
+.home-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-content: center;
+  place-items: center;
+  background-color: transparent;
+}
+
+p-button {
+  margin-left: 100px;
+  cursor: pointer;
+  z-index: 9;
+}
+
+.landing-title {
+  text-align: center;
+  font-family: var(--font-main);
+  font-weight: 700;
+}
+
+.landing-description {
+  padding: 10px 30px;
+  margin-left: 10px;
+  font-weight: 500;
+  text-align: left;
+}
+
+.img-container {
+  width: 45vw;
+  max-width: 700px;
+  height: 40vh;
+  max-height: 550px;
+}
+
+.shadow-inset {
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+}
+
+.image-home {
+  margin: 2rem;
+  transform: translateX(-20px);
+}
+
+.home-middle {
+  padding-left: 25px;
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-block: 5rem;
+  width: 100%;
+}
+
+.mission-company {
+  text-align: left;
+}
+
+.row {
+  display: flex;
+}
+
+.col {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.img-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.col img {
+  height: 70%;
+  width: 100%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.left .img-container {
+  display: flex;
+  align-items: flex-start;
+  height: 100%;
+}
+
+.right .img-container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.waves {
+  position: absolute;
+  bottom: 0;
+  z-index: -1;
+}
+
+@media only screen and (max-width: 1300px) {
+  .image-home {
+    height: 30vh;
+    width: 50vw;
+  }
+
+  .landing-description {
+    font-size: 1.2rem;
+  }
+
+  .home-content {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .home-content {
+    grid-template-columns: 2fr;
+  }
+
+  .image-home {
+    margin-top: 20px;
+    width: 60vw;
+    border-radius: 2em;
+    margin: 0;
+    padding: 10px;
+  }
+
+  .row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .col>.img-container {
+    width: 500px;
+    margin: auto;
+  }
+
+  .landing-description {
+    padding: 10px 15px;
+  }
+}
+
+@media only screen and (max-width: 510px) {
+  .home-content {
+    padding: 0px;
+    margin: 0;
+  }
+
+  .image-home {
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .landing-title {
+    padding-top: 10px;
+  }
+
+  .waves {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+  }
+}

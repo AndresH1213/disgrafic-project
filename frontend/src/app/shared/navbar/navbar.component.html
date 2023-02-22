@@ -1,0 +1,26 @@
+<nav>
+    <div>
+        <img class="nav-logo" routerLink="/" src="assets/images/Disgrafic.jpg" alt="">
+    </div>
+    <div class="navbar-items-container">
+        <ul>
+            <li class="nav-items"><a routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"
+                    routerLink="/">Inicio</a></li>
+            <li class="nav-items"><a routerLinkActive="active-link" routerLink="/products">Productos</a></li>
+            <li class="nav-items"><a routerLinkActive="active-link" routerLink="/imprent">Imprenta</a></li>
+            <li class="nav-items"><a routerLinkActive="active-link" routerLink="/about">Sobre Nosotros</a></li>
+            <li *ngIf="isAuth" class="nav-items"><a routerLinkActive="active-link" routerLink="/admin">Admin</a></li>
+            <li class="nav-items">
+                <a *ngIf="!isAuth" routerLinkActive="active-link" routerLink="/auth">
+                    <span class="pi pi-sign-in"></span>
+                </a>
+                <a *ngIf="isAuth" type="button" (click)="logOut()"><span class="pi pi-sign-out"></span></a>
+            </li>
+        </ul>
+    </div>
+    <div class=" navbar-menu">
+        <p-menu [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'" #menu [popup]="true" [model]="items">
+        </p-menu>
+        <button type="button" pButton icon="pi pi-list" label="Menu" (click)="menu.toggle($event)"></button>
+    </div>
+</nav>

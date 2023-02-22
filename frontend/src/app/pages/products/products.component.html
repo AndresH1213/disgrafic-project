@@ -1,0 +1,28 @@
+<p-carousel *ngIf="products.length > 0" [value]="products" [numVisible]="3" [numScroll]="3" [circular]="true"
+    [responsiveOptions]="responsiveOptions" styleClass="animate__animated animate__fadeIn">
+    <ng-template pTemplate="header">
+        <h1><span class="underline">Productos disponibles </span></h1>
+    </ng-template>
+    <ng-template let-product pTemplate="item">
+        <div class="product-item">
+            <div class="product-item-content">
+                <div class="mb-3">
+                    <img *ngIf="!product.image_url" src="/assets/images/default_product.jpg" alt="image by default"
+                        class="product-image" />
+                    <img *ngIf="product.image_url" [src]="product.image_url" [alt]="product.name"
+                        class="product-image" />
+                </div>
+                <div>
+                    <h4 class="mb-1">{{product.name}}</h4>
+                    <h6 class="mt-0 mb-3"> <strong>${{product.price | number}}</strong> </h6>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</p-carousel>
+
+<div class="spinner-products__container">
+    <p-progressSpinner *ngIf="products.length === 0" [style]="{width: '80px', height: '80px'}"
+        styleClass="custom-spinner" strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s">
+    </p-progressSpinner>
+</div>

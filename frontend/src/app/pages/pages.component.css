@@ -1,0 +1,10 @@
+.page-content {
+  min-height: calc(100vh - 80px - 160px);
+  position: relative;
+  padding: 0px;
+  overflow-y: hidden;
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

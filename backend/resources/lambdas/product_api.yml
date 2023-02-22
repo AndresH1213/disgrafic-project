@@ -1,0 +1,37 @@
+# ENDPOINTS FOR PRODUCTS
+listProducts:
+  handler: src/product/list.handler
+  events:
+    - httpApi: 'GET /product'
+
+getProduct:
+  handler: src/product/retrieve.handler
+  events:
+    - httpApi: 'GET /product/{id}'
+
+createProduct:
+  handler: src/product/create.handler
+  events:
+    - httpApi:
+        path: /product
+        method: post
+        authorizer:
+          name: customAuth
+
+updateProduct:
+  handler: src/product/update.handler
+  events:
+    - httpApi:
+        path: /product/{id}
+        method: put
+        authorizer:
+          name: customAuth
+
+deleteProduct:
+  handler: src/product/delete.handler
+  events:
+    - httpApi:
+        path: /product/{id}
+        method: delete
+        authorizer:
+          name: customAuth

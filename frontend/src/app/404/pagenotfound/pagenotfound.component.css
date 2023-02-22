@@ -1,0 +1,33 @@
+.container {
+  background-color: var(--main-color);
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+h1,
+h3,
+p {
+  text-align: center;
+}
+
+.notfound-image {
+  width: 35vw;
+  align-self: center;
+  justify-self: end;
+}
+
+.btn-info {
+  background-color: var(--secondary-color);
+  color: var(--secondary-color-light);
+  width: 40%;
+  justify-self: center;
+  margin-bottom: 2rem;
+}
+.btn-info i {
+  font-size: 20px;
+  position: relative;
+  top: 3px;
+  left: 0;
+}
