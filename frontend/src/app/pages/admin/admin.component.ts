@@ -194,13 +194,12 @@ export class AdminComponent implements OnInit {
           .pipe(
             filter((resp: any) => resp.status === 200),
             concatMap((resp: any) => {
-              console.log({ resp });
               const image_url = resp.url.split('?')[0];
               const body = {
                 ...form,
                 image_url,
               };
-              console.log({ body });
+              console.log({ body })
               return this.productService.createProduct(body);
             }),
             catchError((err) => {
